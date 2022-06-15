@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
+              "src/styles.css"
               "ProyectoIntegrador_SGR/node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
