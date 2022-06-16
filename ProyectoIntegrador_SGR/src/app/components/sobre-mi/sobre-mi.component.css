@@ -12,6 +12,12 @@ div{
   margin-top: 30%;
   color: whitesmoke;
 }
+#titulosm{
+  color: whitesmoke;
+}
+#textosm, #puesto{
+  color: #989898;
+}
 /*foto de perfil*/
 @media (min-width: 576px){
 #fotoperfil{

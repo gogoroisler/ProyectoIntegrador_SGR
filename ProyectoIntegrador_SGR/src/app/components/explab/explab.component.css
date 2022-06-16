@@ -1,0 +1,13 @@
+.row{
+  padding: 30px;
+  }
+  div{
+    background-color: #313131;
+  }
+  h1, h3{
+    color: whitesmoke;
+    display: inline;
+  }
+  p{
+    color: #989898;
+  }
