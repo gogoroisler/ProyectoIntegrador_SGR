@@ -1,0 +1,22 @@
+.row{
+  padding:30px;
+}
+.container{
+  width:auto;
+}
+.text1, .img1{
+  display: inline-block;
+  text-align: justify;
+}
+.img-proyectos{
+  box-shadow: 10px 10px 30px grey;
+}
+div{
+  background-color: #313131;
+}
+h1{
+  color:whitesmoke;
+}
+p{
+  color: #989898;
+}
