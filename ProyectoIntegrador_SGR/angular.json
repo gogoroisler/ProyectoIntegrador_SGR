@@ -23,11 +23,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-              "ProyectoIntegrador_SGR/node_modules/bootstrap/dist/css/bootstrap.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
-              "ProyectoIntegrador_SGR/node_modules/bootstrap/dist/js/bootstrap.js"
+              "node_modules/bootstrap/dist/js/bootstrap.js"
             ]
           },
           "configurations": {

@@ -1,0 +1,35 @@
+.row{
+  padding: 20px;
+}
+div{
+  background-color: #313131;
+  text-align: center;
+}
+
+/*etiquetas*/
+#nombre{
+  font-weight: bold;
+  margin-top: 30%;
+  color: whitesmoke;
+}
+/*foto de perfil*/
+@media (min-width: 576px){
+#fotoperfil{
+  position:absolute;
+  width: 15%;
+  border-radius: 100%;
+  box-shadow: 3px 3px 3px grey;
+  left: 2.5%;
+  top:400px;
+}
+}
+@media (max-width: 575px){
+  #fotoperfil{
+    position:absolute;
+    width: 30%;
+    border-radius: 100%;
+    box-shadow: 3px 3px 3px grey;
+    left: 33%;
+    top:430px;
+  }
+  }
