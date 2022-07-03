@@ -1,7 +1,7 @@
 package com.portfolioweb.sgr.Controller;
 
-import com.portfolioweb.sgr.Entity.Persona;
-import com.portfolioweb.sgr.Interface.IPersonaService;
+import com.portfolioweb.sgr.Entity.Explab;
+import com.portfolioweb.sgr.Interface.IExplabService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,50 +19,52 @@ import org.springframework.web.bind.annotation.RestController;
 // llamado de front a base
 @CrossOrigin(origins = "https://localhost:4200")
 
-public class PersonaController {
+public class ExplabController {
     // autowired controlador llama al servicio
-    @Autowired IPersonaService ipersonaService;
+    @Autowired IExplabService iexplabService;
     
     // getmapping trae de la base al front con url
     // URL:PUERTO/personas/traer/(persona)/
     @GetMapping("/personas/traer")
-    public List<Persona> getPersona(){
-        return ipersonaService.getPersona();
+    public List<Explab> getExplab(){
+        return iexplabService.getExplab();
     }
     
     // postmapping trae de la base al front con url
     // URL:PUERTO/personas/crear/(persona)/
     @PostMapping("/personas/crear")
-    public String createPersona(@RequestBody Persona persona){
-        ipersonaService.savePersona(persona);
-        return "La persona fue creada correctamente";
+    public String createExplab(@RequestBody Explab explab){
+        iexplabService.saveExplab(explab);
+        return "La experiencia laboral fue creada correctamente";
     }
     
     // deletemapping trae de la base al front con url
     // URL:PUERTO/personas/borrar/(id)/
     @DeleteMapping("personas/borrar/{id}")
-    public String detelePersona(@PathVariable Long id){
-        ipersonaService.deletePersona(id);
-        return "La persona fue eliminada correctamente";
+    public String deteleExplab(@PathVariable Long id){
+        iexplabService.deleteExplab(id);
+        return "La experiencia laboral fue eliminada correctamente";
     }
     
     // putmapping trae de la base al front con url
     // URL:PUERTO/personas/editar/(id)/(nombre)&(apellido)&(img)
     @PutMapping("/personas/editar/{id}")
-    public Persona editPersona(@PathVariable Long id,
+    public Explab editExplab(@PathVariable Long id,
                                       @RequestParam("nombre") String nuevoNombre,
-                                      @RequestParam("apellido") String nuevoApellido,
-                                      @RequestParam("img") String nuevoImg){
-        Persona persona = ipersonaService.findPersona(id);
+                                      @RequestParam("año de inicio") String nuevoAñoInicio,
+                                      @RequestParam("año de cierre") String nuevoAñoCierre,
+                                      @RequestParam("descripcion") String nuevoDescripcion){
+        Explab explab = iexplabService.findExplab(id);
         
-        persona.setNombre(nuevoNombre);
-        persona.setApellido(nuevoApellido);
-        persona.setImg(nuevoImg);
-        ipersonaService.savePersona(persona);
-        return persona;
+        explab.setNombre(nuevoNombre);
+        explab.setAñoInicio(nuevoAñoInicio);
+        explab.setAñoCierre(nuevoAñoCierre);
+        explab.setDescripcion(nuevoDescripcion);
+        iexplabService.saveExplab(explab);
+        return explab;
     }
-    @GetMapping("/personas/traer/perfil")
-    public Persona findPersona(){
-        return ipersonaService.findPersona((long) 1);
+    @GetMapping("/explab/traer/perfil")
+    public Explab findExplab(){
+        return iexplabService.findExplab((long) 1);
     }
 }

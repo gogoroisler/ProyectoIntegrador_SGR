@@ -1,7 +1,7 @@
 package com.portfolioweb.sgr.Controller;
 
-import com.portfolioweb.sgr.Entity.Persona;
-import com.portfolioweb.sgr.Interface.IPersonaService;
+import com.portfolioweb.sgr.Entity.Skills;
+import com.portfolioweb.sgr.Interface.ISkillsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,50 +19,50 @@ import org.springframework.web.bind.annotation.RestController;
 // llamado de front a base
 @CrossOrigin(origins = "https://localhost:4200")
 
-public class PersonaController {
+public class SkillsController {
     // autowired controlador llama al servicio
-    @Autowired IPersonaService ipersonaService;
+    @Autowired ISkillsService iskillsService;
     
     // getmapping trae de la base al front con url
     // URL:PUERTO/personas/traer/(persona)/
     @GetMapping("/personas/traer")
-    public List<Persona> getPersona(){
-        return ipersonaService.getPersona();
+    public List<Skills> getSkills(){
+        return iskillsService.getSkills();
     }
     
     // postmapping trae de la base al front con url
     // URL:PUERTO/personas/crear/(persona)/
     @PostMapping("/personas/crear")
-    public String createPersona(@RequestBody Persona persona){
-        ipersonaService.savePersona(persona);
-        return "La persona fue creada correctamente";
+    public String createSkills(@RequestBody Skills skills){
+        iskillsService.saveSkills(skills);
+        return "La habilidad fue creada correctamente";
     }
     
     // deletemapping trae de la base al front con url
     // URL:PUERTO/personas/borrar/(id)/
     @DeleteMapping("personas/borrar/{id}")
-    public String detelePersona(@PathVariable Long id){
-        ipersonaService.deletePersona(id);
-        return "La persona fue eliminada correctamente";
+    public String deteleSkills(@PathVariable Long id){
+        iskillsService.deleteSkills(id);
+        return "La habilidad fue eliminada correctamente";
     }
     
     // putmapping trae de la base al front con url
     // URL:PUERTO/personas/editar/(id)/(nombre)&(apellido)&(img)
     @PutMapping("/personas/editar/{id}")
-    public Persona editPersona(@PathVariable Long id,
+    public Skills editSkills(@PathVariable Long id,
                                       @RequestParam("nombre") String nuevoNombre,
-                                      @RequestParam("apellido") String nuevoApellido,
-                                      @RequestParam("img") String nuevoImg){
-        Persona persona = ipersonaService.findPersona(id);
+                                      @RequestParam("porcentaje") String nuevoPorcentaje,
+                                      @RequestParam("descripcion") String nuevoDescripcion){
+        Skills skills = iskillsService.findSkills(id);
         
-        persona.setNombre(nuevoNombre);
-        persona.setApellido(nuevoApellido);
-        persona.setImg(nuevoImg);
-        ipersonaService.savePersona(persona);
-        return persona;
+        skills.setNombre(nuevoNombre);
+        skills.setPorcentaje(nuevoPorcentaje);
+        skills.setDescripcion(nuevoDescripcion);
+        iskillsService.saveSkills(skills);
+        return skills;
     }
-    @GetMapping("/personas/traer/perfil")
-    public Persona findPersona(){
-        return ipersonaService.findPersona((long) 1);
+    @GetMapping("/skills/traer/perfil")
+    public Skills findSkills(){
+        return iskillsService.findSkills((long) 1);
     }
 }
