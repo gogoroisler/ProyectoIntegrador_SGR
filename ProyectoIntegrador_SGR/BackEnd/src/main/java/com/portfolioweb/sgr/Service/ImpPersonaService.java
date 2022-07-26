@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 
 public class ImpPersonaService implements IPersonaService{
     // autowired servicio llama al repositorio
-    @Autowired IPersonaRepository ipersonaRepository;
+    @Autowired 
+            IPersonaRepository ipersonaRepository;
 
     // override trae los metodos de la clase
     // listar personas

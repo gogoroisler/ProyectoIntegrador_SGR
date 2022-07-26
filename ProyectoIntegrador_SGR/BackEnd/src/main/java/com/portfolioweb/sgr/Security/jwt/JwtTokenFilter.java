@@ -21,12 +21,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter{
-    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
-    
+    private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
+   
     @Autowired
     JwtProvider jwtProvider;
     @Autowired
     UserDetailsImpl userDetailsImpl;
+          
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

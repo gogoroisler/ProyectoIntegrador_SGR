@@ -4,6 +4,7 @@ import com.portfolioweb.sgr.Entity.Persona;
 import com.portfolioweb.sgr.Interface.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,18 +22,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class PersonaController {
     // autowired controlador llama al servicio
-    @Autowired IPersonaService ipersonaService;
+    @Autowired 
+            IPersonaService ipersonaService;
     
     // getmapping trae de la base al front con url
     // URL:PUERTO/personas/traer/(persona)/
-    @GetMapping("/personas/traer")
+    @GetMapping("/persona/traer")
     public List<Persona> getPersona(){
         return ipersonaService.getPersona();
     }
     
     // postmapping trae de la base al front con url
     // URL:PUERTO/personas/crear/(persona)/
-    @PostMapping("/personas/crear")
+
+    /**
+     *
+     * @param persona
+     * @return
+     */
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/persona/crear")
     public String createPersona(@RequestBody Persona persona){
         ipersonaService.savePersona(persona);
         return "La persona fue creada correctamente";
@@ -40,7 +49,14 @@ public class PersonaController {
     
     // deletemapping trae de la base al front con url
     // URL:PUERTO/personas/borrar/(id)/
-    @DeleteMapping("personas/borrar/{id}")
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("persona/borrar/{id}")
     public String detelePersona(@PathVariable Long id){
         ipersonaService.deletePersona(id);
         return "La persona fue eliminada correctamente";
@@ -48,7 +64,17 @@ public class PersonaController {
     
     // putmapping trae de la base al front con url
     // URL:PUERTO/personas/editar/(id)/(nombre)&(apellido)&(img)
-    @PutMapping("/personas/editar/{id}")
+
+    /**
+     *
+     * @param id
+     * @param nuevoNombre
+     * @param nuevoApellido
+     * @param nuevoImg
+     * @return
+     */
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/persona/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
                                       @RequestParam("nombre") String nuevoNombre,
                                       @RequestParam("apellido") String nuevoApellido,
@@ -61,7 +87,12 @@ public class PersonaController {
         ipersonaService.savePersona(persona);
         return persona;
     }
-    @GetMapping("/personas/traer/perfil")
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping("/persona/traer/perfil")
     public Persona findPersona(){
         return ipersonaService.findPersona((long) 1);
     }
