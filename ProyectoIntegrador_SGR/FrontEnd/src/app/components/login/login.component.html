@@ -11,6 +11,7 @@
               </p>
 
               <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+
                 <div class="form-outline form-white mb-4">
                   <input
                     type="email"
@@ -27,6 +28,7 @@
                   <input
                     type="password"
                     id="password"
+                    name="password"
                     class="form-control form-control-lg"
                     [(ngModel)]="password"
                     required

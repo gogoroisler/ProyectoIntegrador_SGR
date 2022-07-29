@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController 
 // llamado de front a base
 @CrossOrigin(origins = "https://localhost:4200")
+@RequestMapping("/persona")
+
 
 public class PersonaController {
     // autowired controlador llama al servicio
@@ -27,7 +30,7 @@ public class PersonaController {
     
     // getmapping trae de la base al front con url
     // URL:PUERTO/personas/traer/(persona)/
-    @GetMapping("/persona/traer")
+    @GetMapping("/traer")
     public List<Persona> getPersona(){
         return ipersonaService.getPersona();
     }
@@ -41,7 +44,7 @@ public class PersonaController {
      * @return
      */
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/persona/crear")
+    @PostMapping("/crear")
     public String createPersona(@RequestBody Persona persona){
         ipersonaService.savePersona(persona);
         return "La persona fue creada correctamente";
@@ -56,7 +59,7 @@ public class PersonaController {
      * @return
      */
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("persona/borrar/{id}")
+    @DeleteMapping("/borrar/{id}")
     public String detelePersona(@PathVariable Long id){
         ipersonaService.deletePersona(id);
         return "La persona fue eliminada correctamente";
@@ -74,7 +77,7 @@ public class PersonaController {
      * @return
      */
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/persona/editar/{id}")
+    @PutMapping("/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
                                       @RequestParam("nombre") String nuevoNombre,
                                       @RequestParam("apellido") String nuevoApellido,
@@ -92,8 +95,8 @@ public class PersonaController {
      *
      * @return
      */
-    @GetMapping("/persona/traer/perfil")
+    @GetMapping("/traer/perfil")
     public Persona findPersona(){
-        return ipersonaService.findPersona((long) 1);
+        return ipersonaService.findPersona((long)1);
     }
 }

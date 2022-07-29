@@ -16,7 +16,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
-import static org.hibernate.validator.internal.util.CollectionHelper.newHashSet;
 
 @Entity
 public class Usuario {
